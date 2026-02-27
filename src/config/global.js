@@ -1,7 +1,8 @@
 export default {
   global: {
-    Name: 'Nombre del recurso educativo',
-    Description: 'Descripción del RED',
+    componenteFormativo: 'Modelos y esquemas de bodega de datos',
+    descripcionCurso:
+      'Un modelado multidimensional está diseñado para crear aplicaciones OLAP, tecnología asociada al acceso y análisis de datos en línea. En este, las tablas se asemejan a un hipercubo o, si se utiliza OLAP, a un cubo. Son más versátiles que las bases de datos relacionales y procesan de manera más ágil los datos que existen en una base de datos.',
     imagenBannerPrincipal: require('@/assets/curso/portada/banner-principal.svg'),
     fondoBannerPrincipal: require('@/assets/curso/portada/fondo-banner-principal.png'),
     imagenesDecorativasBanner: [
@@ -24,20 +25,30 @@ export default {
       },
       {
         nombreRuta: 'introduccion',
-        icono: 'fas fa-info-circle',
+        icono: 'fas fa-info',
         titulo: 'Introducción',
         desarrolloContenidos: true,
       },
       {
         nombreRuta: 'tema1',
         numero: '1',
-        titulo: 'Tema 1',
+        titulo: 'Modelado multidimensional',
         desarrolloContenidos: true,
         subMenu: [
           {
             numero: '1.1',
-            titulo: 'Subtema 1',
+            titulo: 'Conceptos',
             hash: 't_1_1',
+          },
+          {
+            numero: '1.2',
+            titulo: '¿Por qué se debe utilizar?',
+            hash: 't_1_2',
+          },
+          {
+            numero: '1.3',
+            titulo: 'Aplicación',
+            hash: 't_1_3',
           },
         ],
       },
@@ -45,13 +56,7 @@ export default {
       {
         nombreRuta: 'tema2',
         numero: '2',
-        titulo: 'Tema 2',
-        desarrolloContenidos: true,
-      },
-      {
-        nombreRuta: 'tema3',
-        numero: '3',
-        titulo: 'Tema 3',
+        titulo: 'Diseño lógico y físico',
         desarrolloContenidos: true,
       },
     ],
@@ -73,20 +78,15 @@ export default {
         icono: 'fas fa-sort-alpha-down',
         titulo: 'Glosario',
       },
-      {
+      /*{
         nombreRuta: 'complementario',
         icono: 'far fa-folder-open',
         titulo: 'Material complementario',
-      },
+      },*/
       {
         icono: 'fas fa-book',
         titulo: 'Referencias bibliográficas',
         nombreRuta: 'referencias',
-      },
-      {
-        icono: 'fas fa-file-pdf',
-        titulo: 'Descargar PDF',
-        download: 'downloads/dist.pdf',
       },
       {
         icono: 'fas fa-download',
@@ -102,90 +102,256 @@ export default {
   },
   complementario: [
     {
-      tema: '',
-      referencia: '',
-      tipo: '',
-      link: '',
+      tema: 'Modelo multidimensional',
+      referencia:
+        'Muy tecnológicos. (2021).<i> Base de datos multidimensional</i>.',
+      tipo: 'Página Web',
+      link:
+        'https://muytecnologicos.com/diccionario-tecnologico/base-de-datos-multidimensional',
+    },
+    {
+      tema: 'Modelado multidimensional',
+      referencia:
+        'Evaluando software. (2022). <i>Tratamiento de los datos: OLTP, OLAP, Data Warehouse</i>.',
+      tipo: 'Página Web',
+      link:
+        'https://www.evaluandosoftware.com/tratamiento-los-datos-oltp-olap-data-warehouse/',
+    },
+    {
+      tema: 'Modelado multidimensional',
+      referencia:
+        'Respuestas rápidas. (2022). <i>¿Qué ventajas y desventajas tiene el uso de base de datos multidimensional?</i>',
+      tipo: 'Página Web',
+      link:
+        'https://respuestasrapidas.com.mx/que-ventajas-y-desventajas-tiene-el-uso-de-base-de-datos-multidimensionales/#Que_ventajas_y_desventajas_tiene_el_uso_de_base_de_datos_multidimensionales',
+    },
+    {
+      tema: 'Modelado multidimensional',
+      referencia:
+        'Mesa, F. Pérez, F. & Noguera, C. (2019). <em>Bodega de Datos para la empresa Adventure Works</em> [Trabajo de grado, Universidad Jorge Tadeo Lozano].',
+      tipo: 'Trabajo de grado de especialización',
+      link:
+        'https://1library.co/document/zp0k6w4q-bodega-datos-para-la-empresa-adventure-works-cycles.html',
+    },
+    {
+      tema: 'Modelado multidimensional',
+      referencia:
+        'Roldán, D. (2015). <em>Diseño de una guía general para construir una bodega de datos del área de ventas de una empresa</em> [Monografía de diplomado, Universidad Libre]. Repositorio Universidad Libre.',
+      tipo: 'Trabajo de grado de pregrado',
+      link:
+        'https://repository.unilibre.edu.co/bitstream/handle/10901/11042/Monografia%20bodega%20datos.pdf?sequence=1',
+    },
+    {
+      tema: 'Modelado multidimensional',
+      referencia:
+        'Calle, D. (2009). <em>Manual para el diseño e implementación de bases de datos OLAP y su aplicación en inteligencia de negocios</em> [Trabajo de grado, UNIVERSIDAD EAFIT]. Repositorio Institucional Universidad EAFIT.',
+      tipo: 'Trabajo de grado de pregrado',
+      link: 'https://core.ac.uk/download/47240196.pdf',
+    },
+    {
+      tema: 'Modelado multidimensional',
+      referencia: 'Google. (s.f.). <i>Centros de datos</i>.',
+      tipo: 'Página Web',
+      link: 'https://www.google.com/intl/es/about/datacenters/locations/',
     },
   ],
   glosario: [
     {
-      termino: '',
-      significado: '',
+      termino: 'BI (<em>Business Inteligence</em>)',
+      significado:
+        'método que agrupa los datos de una empresa con el objetivo de ser analizados y transformarlos en información que se pueda utilizar para mejorar los procesos.',
+    },
+    {
+      termino: 'Cubo',
+      significado:
+        'representación multidimensional de datos necesaria para las aplicaciones de procesamiento analítico en línea.',
+    },
+    {
+      termino: '<em>Data mart</em>',
+      significado:
+        'subconjunto de datos orientado a un objeto. Su principal característica es su diseño clásico que facilita en gran medida su uso.',
+    },
+    {
+      termino: '<em>Data mining</em>',
+      significado: 'extracción de la información de grandes bases de datos.',
+    },
+    {
+      termino: 'Dimensión',
+      significado:
+        'conjunto de entidades dentro de una base de datos que se usa para obtener información sobre los datos de hechos de uno o varios cubos.',
+    },
+    {
+      termino: 'ETL',
+      significado: 'extracción, transformación y carga de datos.',
+    },
+    {
+      termino: 'Metadatos',
+      significado:
+        'datos que describen las características de los datos; datos descriptivos.',
+    },
+    {
+      termino: 'Multidimensional',
+      significado: 'implica varios aspectos.',
+    },
+    {
+      termino: 'Origen de datos',
+      significado:
+        'acceso de un documento o información como una base de datos o un archivo XML y la información de conexión necesaria para acceder a los datos.',
+    },
+    {
+      termino: '<em>Pivot</em>',
+      significado:
+        'herramienta que permite encontrar información de convocatorias para financiación externa de proyectos.',
     },
   ],
   referencias: [
     {
-      referencia: '',
+      referencia:
+        'Abadía digital. (2009). <em>¿Dónde tiene situados Google sus data centers?</em> Ad.',
+      link:
+        'https://www.abadiadigital.com/donde-tiene-situados-google-sus-data-centers/',
+    },
+    {
+      referencia:
+        'Ámbito. (2020). <i>Google anuncia que trabaja para operar con energía limpia en todo el mundo para 2030</i>. ',
+      link:
+        'https://www.ambito.com/informacion-general/google/anuncia-que-trabaja-operar-energia-limpia-todo-el-mundo-2030-n5132706',
+    },
+    {
+      referencia:
+        'Amos, D., Bader, D., Jablonski, J. & Heisler, F.  (2021). <em>Python Basics: A Practical Introduction to Python 3.</em> Real Python.',
+      link: 'https://static.realpython.com/python-basics-sample-chapters.pdf',
+    },
+    {
+      referencia:
+        'Conesa, J. & Curto, J. (2015). <em>¿Cómo crear un data warehouse?</em> UOC.',
       link: '',
     },
-  ],
-  creditos: [
     {
-      titulo: 'ECOSISTEMA DE RECURSOS EDUCATIVOS DIGITALES',
-      autores: [
-        {
-          nombre: 'Nombre completo',
-          cargo: 'Responsable del ecosistema',
-          centro: 'Dirección General',
-        },
-        {
-          nombre: 'Nombre completo',
-          cargo: 'Responsable de línea de producción',
-          centro: 'Centro XYZ - Regional XYZ',
-        },
-      ],
+      referencia:
+        'Hammergren, T. & Simon, A. (2009). <em>Data warehousing for dummies.</em>',
+      link: '',
     },
     {
-      titulo: 'CONTENIDO INSTRUCCIONAL',
-      autores: [
-        {
-          nombre: 'Nombre responsable',
-          cargo: 'Nombre del rol',
-          centro: 'Centro XYZ - Regional XYZ',
-        },
-      ],
+      referencia: 'Google. (s.f.). Volver al día de hoy. <em>Google.</em>',
+      link: '',
     },
     {
-      titulo: 'DISEÑO Y DESARROLLO DE RECURSOS EDUCATIVOS DIGITALES',
-      autores: [
-        {
-          nombre: 'Nombre responsable',
-          cargo: 'Diseñador de contenidos',
-          centro: 'Centro XYZ - Regional XYZ',
-        },
-        {
-          nombre: 'Nombre responsable',
-          cargo: 'Desarrollador <i>full stack</i>',
-          centro: 'Centro XYZ - Regional XYZ',
-        },
-        {
-          nombre: 'Nombre responsable',
-          cargo: 'Animador y productor audiovisual',
-          centro: 'Centro XYZ - Regional XYZ',
-        },
-      ],
+      referencia:
+        'Google. (s.f.). Diseñamos nuestros centros de datos con la seguridad en mente. <em>Google.</em>',
+      link: '',
     },
     {
-      titulo: 'VALIDACIÓN RECURSO EDUCATIVO DIGITAL',
-      autores: [
-        {
-          nombre: 'Nombre responsable',
-          cargo: 'Validador y vinculador de recursos educativos digitales',
-          centro: 'Centro XYZ - Regional XYZ',
-        },
-        {
-          nombre: 'Nombre responsable',
-          cargo: 'Evaluador de contenidos inclusivos y accesibles',
-          centro: 'Centro XYZ - Regional XYZ',
-        },
-      ],
+      referencia:
+        'Lewis, R. (2017). <em>Tutorial fácil de seguir para aprender la programación de Python en menos de una semana. Full engineering book.</em>',
+      link: '',
+    },
+    {
+      referencia:
+        'Revista Semana. (2020). Google es la primera gran empresa en eliminar su huella de carbono neta. <i>Revista Semana.</i>',
+      link:
+        'https://www.semana.com/empresas/articulo/google-busca-mitigar-el-cambio-climatico-con-energias-limpias/300699/',
+    },
+    {
+      referencia:
+        'Rossum, G. (2017). <em>El tutorial de Python. Python Software Foundation.</em>',
+      link: 'https://docs.python.org/es/3/tutorial/',
+    },
+    {
+      referencia: 'TIBCO. (s.f.). <em>¿Qué es un modelo de datos lógico?</em>',
+      link: '',
+    },
+    {
+      referencia: 'XDOCS. (s.f.). <em>Empresas que usan data warehouse.</em>',
+      link:
+        'https://docs.google.com/document/d/1M5VuT4mVWxCMWdf76jXjph_myxed87Twe9GrSPNEmHA/preview?hgd=1&pli=1&tab=t.0',
     },
   ],
-  creditosAdicionales: {
-    imagenes:
-      'Fotografías y vectores tomados de <a href="https://www.freepik.es/" target="_blank">www.freepik.es</a>, <a href="https://www.shutterstock.com/" target="_blank">www.shutterstock.com</a>, <a href="https://unsplash.com/" target="_blank">unsplash.com </a>y <a href="https://www.flaticon.com/" target="_blank">www.flaticon.com</a>',
-    creativeCommons:
-      'Licencia creative commons CC BY-NC-SA<br><a href="https://creativecommons.org/licenses/by-nc-sa/2.0/" target="_blank">ver licencia</a>',
+  creditos: {
+    liderEquipo: [
+      {
+        nombre: 'Maria Camila Garcia Santamaria',
+        cargo: 'Líder del equipo',
+        centro: 'Dirección General',
+      },
+    ],
+    contenidoInstruccional: [
+      {
+        nombre: 'Rafael Neftalí Lizcano Reyes',
+        cargo: 'Asesor metodológico y pedagógico',
+        centro:
+          'Centro Industrial del Diseño y la Manufactura - Regional Santander',
+      },
+    ],
+    desarrolloProducto: [
+      {
+        nombre: 'Francisco José Lizcano Reyes',
+        cargo: 'Responsable del equipo',
+        centro:
+          'Centro Industrial del Diseño y la Manufactura - Regional Santander',
+      },
+      {
+        nombre: 'Nombre',
+        cargo: 'Diseño web',
+        centro:
+          'Centro Industrial del Diseño y la Manufactura - Regional Santander',
+      },
+      {
+        nombre: 'Nombre',
+        cargo: 'Producción audiovisual',
+        centro:
+          'Centro Industrial del Diseño y la Manufactura - Regional Santander',
+      },
+      {
+        nombre: 'Nombre',
+        cargo: 'Desarrollo front-end',
+        centro:
+          'Centro Industrial del Diseño y la Manufactura - Regional Santander',
+      },
+      {
+        nombre: 'Nombre',
+        cargo: 'Validación de diseño y contenido',
+        centro:
+          'Centro Industrial del Diseño y la Manufactura - Regional Santander',
+      },
+    ],
+    gestoresRepositorio: [
+      {
+        nombre: 'Álvaro Andrés Angarita Ramirez',
+        cargo: 'Validación y vinculación en plataforma LMS',
+        centro: 'Centro de Comercio y Servicios - Regional Tolima',
+      },
+      {
+        nombre: 'Daniel Felipe Varón Molina',
+        cargo: 'Validación y vinculación en plataforma LMS',
+        centro: 'Centro de Comercio y Servicios - Regional Tolima',
+      },
+      {
+        nombre: 'Milady Tatiana Villamil Castellanos',
+        cargo: 'Validación y vinculación en plataforma LMS',
+        centro: 'Centro de Comercio y Servicios - Regional Tolima',
+      },
+    ],
   },
+  // creditosInicio: [
+  //   {
+  //     titulo: 'En alianza',
+  //     contenido: [
+  //       require('@/assets/template/logo-sena-naranja.svg'),
+  //       require('@/assets/template/mintic.jpg'),
+  //       require('@/assets/template/minsalud.jpg'),
+  //     ],
+  //   },
+  //   {
+  //     titulo: 'En compañía',
+  //     contenido: [
+  //       require('@/assets/template/presidencia.jpg'),
+  //       require('@/assets/template/ecopetrol.jpg'),
+  //     ],
+  //   },
+  //   {
+  //     titulo: 'Una iniciativa',
+  //     contenido: [require('@/assets/template/santander.jpg')],
+  //   },
+  // ],
 }
