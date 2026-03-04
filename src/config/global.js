@@ -220,7 +220,7 @@ export default {
     {
       referencia:
         'Amos, D., Bader, D., Jablonski, J. & Heisler, F.  (2021). <em>Python Basics: A Practical Introduction to Python 3.</em> Real Python.',
-      link: 'https://static.realpython.com/python-basics-sample-chapters.pdf',
+      link: 'https://realpython.com/products/python-basics-book/',
     },
     {
       referencia:
